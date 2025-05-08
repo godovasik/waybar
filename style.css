@@ -1,0 +1,142 @@
+@import "frappe.css";
+
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 14px;
+}
+
+window#waybar {
+    background-color: @base;
+    color: @text;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: @overlay2;
+    box-shadow: inset 0 -3px transparent;
+    border: none;
+    border-radius: 0;
+}
+
+#workspaces button.active {
+    color: @mauve;
+}
+
+#workspaces button.empty {
+    color: @surface1;
+}
+
+#workspaces button:hover {
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 -3px @mauve;
+}
+
+#clock,
+#cpu,
+#memory,
+#pulseaudio,
+#keyboard-state,
+#tray,
+#custom-wireguard,
+#custom-proxy,
+#custom-network-speed {
+    padding: 0 10px;
+    color: @text;
+    border-radius: 10px;
+    margin: 5px 3px;
+    background-color: @surface0;
+}
+
+#clock {
+    color: @blue;
+}
+
+#cpu {
+    color: @green;
+}
+
+#cpu.warning {
+    color: @yellow;
+}
+
+#cpu.critical {
+    color: @red;
+}
+
+#memory {
+    color: @peach;
+}
+
+#memory.warning {
+    color: @yellow;
+}
+
+#memory.critical {
+    color: @red;
+}
+
+#keyboard-state {
+    color: @lavender;
+}
+
+#pulseaudio {
+    color: @teal;
+}
+
+#pulseaudio.muted {
+    color: @overlay1;
+}
+
+#custom-wireguard.connected {
+    color: @green;
+}
+
+#custom-wireguard.disconnected {
+    color: @overlay1;
+}
+
+#custom-wireguard.loading {
+    color: @yellow;
+    animation: blink 1s infinite;
+}
+
+#custom-proxy.connected {
+    color: @green;
+}
+
+#custom-proxy.disconnected {
+    color: @overlay1;
+}
+
+#custom-proxy.loading {
+    color: @yellow;
+    animation: blink 1s infinite;
+}
+
+#custom-network-speed {
+    color: @sky;
+    min-width: 150px;
+}
+
+@keyframes blink {
+    to {
+        opacity: 0.5;
+    }
+}
+
+tooltip {
+    background-color: @mantle;
+    border: 1px solid @surface0;
+    border-radius: 10px;
+}
+
+tooltip label {
+    color: @text;
+}

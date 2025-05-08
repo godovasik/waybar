@@ -1,0 +1,109 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 4,
+    "modules-left": ["custom/network-speed", "custom/wireguard", "custom/proxy"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["cpu", "memory", "pulseaudio", "keyboard-state", "clock", "tray"],
+    
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "active": "󰮯",
+            "default": "󰊠",
+            "empty": "󰑊"
+        },
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+        }
+    },
+    
+    "keyboard-state": {
+        "numlock": false,
+        "capslock": false,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+    
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%H:%M}",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": true,
+        "on-click": "hyprctl dispatch exec kitty htop",
+        "interval": 2,
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+    
+    "memory": {
+        "format": "{}% ",
+        "interval": 2,
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+    
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon} ",
+        "format-bluetooth-muted": "󰝟 {icon} ",
+        "format-muted": "󰝟",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "scroll-step": 5
+    },
+    
+    "tray": {
+        "icon-size": 16,
+        "spacing": 10
+    },
+    
+    "custom/wireguard": {
+        "format": "{}",
+        "interval": 5,
+        "exec": "~/.config/waybar/scripts/wireguard-status.sh",
+        "on-click": "~/.config/waybar/scripts/wireguard-toggle.sh",
+        "return-type": "json"
+    },
+    
+    "custom/proxy": {
+        "format": "{}",
+        "interval": 5,
+        "exec": "~/.config/waybar/scripts/proxy-status.sh",
+        "on-click": "~/.config/waybar/scripts/proxy-toggle.sh",
+        "return-type": "json"
+    },
+    
+    "custom/network-speed": {
+        "format": "{icon} ⇣{} ⇡{}",
+        "format-icons": ["󰖩"],
+        "interval": 2,
+        "exec": "~/.config/waybar/scripts/network-speed.sh",
+        "tooltip": false
+    }
+}
