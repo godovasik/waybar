@@ -11,10 +11,8 @@
     ],
     "modules-center": ["hyprland/workspaces"],
     "modules-right": [
-        "cpu",
-        "temperature#cpu",
+        "custom/cpu",
         "custom/gpu",
-        "temperature#gpu",
         "memory",
         "pulseaudio",
         "hyprland/language",
@@ -39,10 +37,9 @@
         }
     },
 
- // TODO: fix this shit   
     "hyprland/language": {
         "format": "Lang: {}",
-        "keyboard-name": "usb-usb-keybaord",
+        "keyboard-name": "usb-usb-keyboard"
     },
     
     "clock#time": {
@@ -57,31 +54,21 @@
         "interval": 60
     },
     
-    "cpu": {
-        "format": " {usage}%", //test
-        "tooltip": true,
+    "custom/cpu": {
+        "format": " {}",
         "interval": 2,
-        "on-click": "hyprctl dispatch exec kitty htop",
-        "states": {
-            "warning": 70,
-            "critical": 90
-        }
-    },
-
-     "temperature#cpu": {
-    // "thermal-zone": 2,
-        "hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input",
-        "critical-threshold": 80,
-        "format-critical": "FUCK: {temperatureC}°",
-        "format": "{temperatureC}°"
+        "exec": "~/.config/waybar/scripts/cpu-stats.sh",
+        "return-type": "json",
+        "tooltip": true,
+        "on-click": "hyprctl dispatch exec kitty htop"
     },
     
-    "temperature#gpu": {
-    // "thermal-zone": 2,
-        "hwmon-path": "/sys/devices/pci0000:00/0000:00:03.1/0000:05:00.0/0000:06:00.0/0000:07:00.0/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        "format-critical": "FUCK: {temperatureC}°",
-        "format": "{temperatureC}°"
+    "custom/gpu": {
+        "format": "󰾲 {}",
+        "return-type": "json",
+        "interval": 2,
+        "exec": "~/.config/waybar/scripts/gpu-stats.sh",
+        "tooltip": true
     },
 
     "memory": {
@@ -94,16 +81,8 @@
         }
     },
     
-    "custom/gpu": {
-        "format": "󰾲 {}",
-        "return-type": "json",
-        "interval": 2,
-        "exec": "~/.config/waybar/scripts/gpu-stats.sh",
-        "tooltip": true
-    },
-    
     "pulseaudio": {
-    "format": "{icon}  {volume}%",
+    "format": "{icon} {volume}%",
     "format-bluetooth": "{volume}% {icon}",
     "format-muted": "",
     "format-icons": {
@@ -120,7 +99,6 @@
     },
     "scroll-step": 2,
     "on-click": "pavucontrol",
-    "tooltip": true,
     "ignored-sinks": ["Easy Effects Sink"]
 },
     

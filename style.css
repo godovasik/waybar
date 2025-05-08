@@ -39,8 +39,8 @@ window#waybar.hidden {
 }
 
 #clock,
-#cpu,
-#temperature,
+#custom-cpu,
+#custom-gpu,
 #memory,
 #pulseaudio,
 #keyboard-state,
@@ -48,7 +48,6 @@ window#waybar.hidden {
 #custom-wireguard,
 #custom-proxy,
 #custom-network-speed,
-#custom-gpu,
 #network {
     padding: 0 10px;
     color: @text;
@@ -65,15 +64,15 @@ window#waybar.hidden {
     color: @lavender;
 }
 
-#cpu {
+#custom-cpu {
     color: @green;
 }
 
-#cpu.warning {
+#custom-cpu.warning {
     color: @yellow;
 }
 
-#cpu.critical {
+#custom-cpu.critical {
     color: @red;
 }
 
@@ -150,12 +149,7 @@ window#waybar.hidden {
     min-width: 150px;
 }
 
-@keyframes blink {
-    to {
-        opacity: 0.5;
-    }
-}
-
+/* Стилизация tooltip */
 tooltip {
     background-color: @mantle;
     border: 1px solid @surface0;
@@ -164,4 +158,10 @@ tooltip {
 
 tooltip label {
     color: @text;
+}
+
+@keyframes blink {
+    to {
+        opacity: 0.5;
+    }
 }
