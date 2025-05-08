@@ -1,0 +1,187 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 4,
+    "modules-left": [
+        "tray",
+        "custom/network-speed",
+        "custom/wireguard",
+        "custom/proxy"
+    ],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": [
+        "cpu",
+        "temperature#cpu",
+        "custom/gpu",
+        "temperature#gpu",
+        "memory",
+        "pulseaudio",
+        "hyprland/language",
+        "clock#date",
+        "clock#time"
+    ],
+    
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "active": "󰮯",
+            "default": "󰊠",
+            "empty": "󰑊"
+        },
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+        }
+    },
+
+ // TODO: fix this shit   
+    "hyprland/language": {
+        "format": "Lang: {}",
+        "keyboard-name": "usb-usb-keybaord",
+    },
+    
+    "clock#time": {
+        "tooltip-format": "<big>{:%H:%M}</big>",
+        "format": "{:%H:%M}",
+        "interval": 60
+    },
+    
+    "clock#date": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%d-%m-%Y}",
+        "interval": 60
+    },
+    
+    "cpu": {
+        "format": " {usage}%", //test
+        "tooltip": true,
+        "interval": 2,
+        "on-click": "hyprctl dispatch exec kitty htop",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+
+     "temperature#cpu": {
+    // "thermal-zone": 2,
+        "hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input",
+        "critical-threshold": 80,
+        "format-critical": "FUCK: {temperatureC}°",
+        "format": "{temperatureC}°"
+    },
+    
+    "temperature#gpu": {
+    // "thermal-zone": 2,
+        "hwmon-path": "/sys/devices/pci0000:00/0000:00:03.1/0000:05:00.0/0000:06:00.0/0000:07:00.0/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "format-critical": "FUCK: {temperatureC}°",
+        "format": "{temperatureC}°"
+    },
+
+    "memory": {
+        "format": "󰘚 {}%",
+        "tooltip": true,
+        "interval": 2,
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+    
+    "custom/gpu": {
+        "format": "󰾲 {}",
+        "return-type": "json",
+        "interval": 2,
+        "exec": "~/.config/waybar/scripts/gpu-stats.sh",
+        "tooltip": true
+    },
+    
+    "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-muted": "",
+    "format-icons": {
+        "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
+        "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "phone-muted": "",
+        "portable": "",
+        "car": "",
+        "default": ["", ""]
+    },
+    "scroll-step": 2,
+    "on-click": "pavucontrol",
+    "tooltip": true,
+    "ignored-sinks": ["Easy Effects Sink"]
+},
+    
+    "tray": {
+        "icon-size": 16,
+        "spacing": 10
+    },
+    
+    "custom/wireguard": {
+        "format": "{text}",
+        "interval": 5,
+        "exec": "~/.config/waybar/scripts/wireguard-status.sh",
+        "on-click": "~/.config/waybar/scripts/wireguard-toggle.sh",
+        "return-type": "json"
+    },
+    
+    "custom/proxy": {
+        "format": "{text}",
+        "interval": 5,
+        "exec": "~/.config/waybar/scripts/proxy-status.sh",
+        "on-click": "~/.config/waybar/scripts/proxy-toggle.sh",
+        "return-type": "json"
+    },
+    
+    "custom/network-speed": {
+        "format": " {text}",
+        "interval": 2,
+        "exec": "~/.config/waybar/scripts/network-speed.sh",
+        "return-type": "json",
+        "tooltip": false
+    },
+    
+    "network": {
+        "format-wifi": "󰖩",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰖪",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "{ifname}",
+        "tooltip-format-disconnected": "Disconnected",
+        "on-click": "nm-connection-editor"
+    },
+    
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    }
+}
