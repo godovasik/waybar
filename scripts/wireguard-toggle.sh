@@ -3,7 +3,7 @@
 WAYBAR_ID="custom-wireguard"
 
 # Устанавливаем иконку загрузки
-echo '{"text": "󰑓", "class": "loading", "tooltip": "WireGuard: Applying changes..."}' >/tmp/wireguard-status
+echo '{"text": "wg", "class": "loading", "tooltip": "WireGuard: Applying changes..."}' >/tmp/wireguard-status
 
 # Функция для обработки status.sh
 function handle_status {

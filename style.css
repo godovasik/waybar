@@ -46,7 +46,9 @@ window#waybar.hidden {
 #tray,
 #custom-wireguard,
 #custom-proxy,
-#custom-network-speed {
+#custom-network-speed,
+#custom-notification,
+#network {
     padding: 0 10px;
     color: @text;
     border-radius: 10px;
@@ -54,8 +56,12 @@ window#waybar.hidden {
     background-color: @surface0;
 }
 
-#clock {
+#clock.time {
     color: @blue;
+}
+
+#clock.date {
+    color: @lavender;
 }
 
 #cpu {
@@ -96,6 +102,7 @@ window#waybar.hidden {
 
 #custom-wireguard.connected {
     color: @green;
+    font-weight: bold;
 }
 
 #custom-wireguard.disconnected {
@@ -109,6 +116,7 @@ window#waybar.hidden {
 
 #custom-proxy.connected {
     color: @green;
+    font-weight: bold;
 }
 
 #custom-proxy.disconnected {
@@ -118,6 +126,14 @@ window#waybar.hidden {
 #custom-proxy.loading {
     color: @yellow;
     animation: blink 1s infinite;
+}
+
+#custom-notification {
+    color: @blue;
+}
+
+#network {
+    color: @sky;
 }
 
 #custom-network-speed {

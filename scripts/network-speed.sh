@@ -31,4 +31,4 @@ else
     TUNIT="KB/s"
 fi
 
-echo "${RKBPS}${RUNIT} ${TKBPS}${TUNIT}"
+echo "{\"text\": \"⇣${RKBPS}${RUNIT} ⇡${TKBPS}${TUNIT}\"}"

@@ -3,9 +3,9 @@
     "position": "top",
     "height": 30,
     "spacing": 4,
-    "modules-left": ["custom/network-speed", "custom/wireguard", "custom/proxy"],
+    "modules-left": ["network", "custom/network-speed", "custom/wireguard", "custom/proxy"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["cpu", "memory", "pulseaudio", "keyboard-state", "clock", "tray"],
+    "modules-right": ["cpu", "memory", "pulseaudio", "keyboard-state", "clock#date", "clock#time", "tray", "custom/notification"],
     
     "hyprland/workspaces": {
         "format": "{icon}",
@@ -27,21 +27,27 @@
     "keyboard-state": {
         "numlock": false,
         "capslock": false,
-        "format": "{name} {icon}",
+        "format": "{layout}",
         "format-icons": {
             "locked": "",
             "unlocked": ""
         }
     },
     
-    "clock": {
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "clock#time": {
+        "tooltip-format": "<big>{:%H:%M}</big>",
         "format": "{:%H:%M}",
-        "format-alt": "{:%Y-%m-%d}"
+        "interval": 60
+    },
+    
+    "clock#date": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%d-%m-%Y}",
+        "interval": 60
     },
     
     "cpu": {
-        "format": "{usage}% ",
+        "format": " {temperature}°C | {usage}%",
         "tooltip": true,
         "on-click": "hyprctl dispatch exec kitty htop",
         "interval": 2,
@@ -52,7 +58,7 @@
     },
     
     "memory": {
-        "format": "{}% ",
+        "format": " {}%",
         "interval": 2,
         "states": {
             "warning": 70,
@@ -61,9 +67,9 @@
     },
     
     "pulseaudio": {
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon} ",
-        "format-bluetooth-muted": "󰝟 {icon} ",
+        "format": "{icon} {volume}",
+        "format-bluetooth": "{icon}  {volume}",
+        "format-bluetooth-muted": "󰝟 ",
         "format-muted": "󰝟",
         "format-icons": {
             "headphone": "",
@@ -72,7 +78,7 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", "", ""]
+            "default": ["g", "", ""]
         },
         "on-click": "pavucontrol",
         "scroll-step": 5
@@ -84,7 +90,7 @@
     },
     
     "custom/wireguard": {
-        "format": "{}",
+        "format": "{text}",
         "interval": 5,
         "exec": "~/.config/waybar/scripts/wireguard-status.sh",
         "on-click": "~/.config/waybar/scripts/wireguard-toggle.sh",
@@ -92,7 +98,7 @@
     },
     
     "custom/proxy": {
-        "format": "{}",
+        "format": "{text}",
         "interval": 5,
         "exec": "~/.config/waybar/scripts/proxy-status.sh",
         "on-click": "~/.config/waybar/scripts/proxy-toggle.sh",
@@ -100,10 +106,41 @@
     },
     
     "custom/network-speed": {
-        "format": "{icon} ⇣{} ⇡{}",
-        "format-icons": ["󰖩"],
+        "format": " {text}",
         "interval": 2,
         "exec": "~/.config/waybar/scripts/network-speed.sh",
+        "return-type": "json",
         "tooltip": false
+    },
+    
+    "network": {
+        "format-wifi": "󰖩",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰖪",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "{ifname}",
+        "tooltip-format-disconnected": "Disconnected"
+    },
+    
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     }
 }

@@ -3,7 +3,7 @@
 WAYBAR_ID="custom-proxy"
 
 # Устанавливаем иконку загрузки
-echo '{"text": "󰑓", "class": "loading", "tooltip": "SOCKS5 Proxy: Applying changes..."}' >/tmp/proxy-status
+echo '{"text": "proxy", "class": "loading", "tooltip": "SOCKS5 Proxy: Applying changes..."}' >/tmp/proxy-status
 
 # Функция для обработки status.sh
 function handle_status {
