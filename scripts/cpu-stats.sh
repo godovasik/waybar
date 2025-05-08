@@ -30,7 +30,7 @@ while IFS= read -r line; do
         PERCENT=$(awk -v usage=$USAGE -v total=$TOTAL 'BEGIN {printf "%.1f", (usage / total) * 100}')
 
         # Важно: используем экранированные \\n вместо реальных переносов строк
-        CORES_INFO="${CORES_INFO}Core ${CORE_NUM+1}: ${PERCENT}%\\n"
+        CORES_INFO="${CORES_INFO}Core ${CORE_NUM}: ${PERCENT}%\\n"
         CORE_COUNT=$((CORE_COUNT + 1))
     fi
 done </proc/stat
