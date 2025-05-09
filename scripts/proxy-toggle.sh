@@ -33,10 +33,12 @@ if [[ $(
 ) -eq 0 ]]; then
     # Здесь команда для остановки вашего SOCKS5 прокси
     # Например: killall -9 your_proxy_program
+    kill $(ps aux | grep "ssh -D 1080" | grep -v grep | awk '{print $2}')
     echo "Stopping proxy" >/dev/null
 else
     # Здесь команда для запуска вашего SOCKS5 прокси
     # Например: your_proxy_program &
+    ssh -D 1080 -C -q -N bailey@185.233.82.223
     echo "Starting proxy" >/dev/null
 fi
 

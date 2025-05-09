@@ -48,12 +48,17 @@ window#waybar.hidden {
 #custom-wireguard,
 #custom-proxy,
 #custom-network-speed,
+#hyprland-language,
 #network {
     padding: 0 10px;
     color: @text;
     border-radius: 10px;
     margin: 5px 3px;
     background-color: @surface0;
+}
+
+#hyprland-language {
+    color: @blue;
 }
 
 #clock.time {

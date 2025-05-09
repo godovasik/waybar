@@ -38,8 +38,10 @@
     },
 
     "hyprland/language": {
-        "format": "Lang: {}",
-        // "keyboard-name": "usb-usb-keyboard"
+        "format": "{}",
+        "keyboard-name": "usb-usb-keyboard",
+        "format-en": "EN",
+        "format-": "RU",
     },
     
     "clock#time": {
@@ -108,7 +110,7 @@
     
     "custom/wireguard": {
         "format": "{text}",
-        "interval": 5,
+        "interval": 1,
         "exec": "~/.config/waybar/scripts/wireguard-status.sh",
         "on-click": "~/.config/waybar/scripts/wireguard-toggle.sh",
         "return-type": "json"
@@ -116,7 +118,7 @@
     
     "custom/proxy": {
         "format": "{text}",
-        "interval": 5,
+        "interval": 1,
         "exec": "~/.config/waybar/scripts/proxy-status.sh",
         "on-click": "~/.config/waybar/scripts/proxy-toggle.sh",
         "return-type": "json"

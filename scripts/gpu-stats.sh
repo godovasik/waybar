@@ -2,7 +2,7 @@
 
 # Путь к файлам с данными
 GPU_USAGE_FILE="/sys/class/drm/card1/device/hwmon/hwmon2/device/gpu_busy_percent"
-CPU_TEMP_FILE="/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input"
+CPU_TEMP_FILE="/sys/devices/pci0000:00/0000:00:03.1/0000:05:00.0/0000:06:00.0/0000:07:00.0/hwmon/hwmon2/temp1_input"
 
 # Чтение значений
 if [ -f "$GPU_USAGE_FILE" ]; then
