@@ -39,7 +39,7 @@
 
     "hyprland/language": {
         "format": "Lang: {}",
-        "keyboard-name": "usb-usb-keyboard"
+        // "keyboard-name": "usb-usb-keyboard"
     },
     
     "clock#time": {
@@ -55,8 +55,8 @@
     },
     
     "custom/cpu": {
-        "format": " {}",
-        "interval": 2,
+        "format": " {}",
+        "interval": 1,
         "exec": "~/.config/waybar/scripts/cpu-stats.sh",
         "return-type": "json",
         "tooltip": true,
@@ -64,9 +64,8 @@
     },
     
     "custom/gpu": {
-        "format": "󰾲 {}",
-        "return-type": "json",
-        "interval": 2,
+        "format": "GPU {}",
+        "interval": 1,
         "exec": "~/.config/waybar/scripts/gpu-stats.sh",
         "tooltip": true
     },

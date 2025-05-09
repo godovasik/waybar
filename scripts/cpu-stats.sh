@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Получаем загрузку CPU
-CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}' | awk '{printf "%.1f", $0}')
+CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}' | awk '{printf "%2.0f", $0}')
 
 # Получаем температуру CPU
 CPU_TEMP_PATH="/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input"
 if [ -f "$CPU_TEMP_PATH" ]; then
-    CPU_TEMP=$(awk '{printf "%.1f", $1 / 1000}' $CPU_TEMP_PATH)
+    CPU_TEMP=$(awk '{printf "%2.0f", $1 / 1000}' $CPU_TEMP_PATH)
 else
     CPU_TEMP="N/A"
 fi
@@ -43,7 +43,7 @@ PROCESS_COUNT=$((PROCESS_COUNT - 1)) # Вычитаем заголовок
 LOAD_AVG=$(cat /proc/loadavg | awk '{printf "%s %s %s", $1, $2, $3}')
 
 # Основной текст и tooltip для waybar - используем экранированные переносы строк
-TEXT="${CPU_USAGE}%, ${CPU_TEMP}°C"
+TEXT="${CPU_USAGE}% | ${CPU_TEMP}°C"
 TOOLTIP="CPU Usage: ${CPU_USAGE}%\\nCPU Temperature: ${CPU_TEMP}°C\\nCPU Frequency: ${CPU_FREQ} GHz\\nActive Processes: ${PROCESS_COUNT}\\nLoad Average: ${LOAD_AVG}\\n\\nCore Usage:\\n${CORES_INFO}"
 
 # Определяем класс в зависимости от загрузки
