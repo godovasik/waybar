@@ -39,7 +39,7 @@
 
     "hyprland/language": {
         "format": "{}",
-        "keyboard-name": "usb-usb-keyboard",
+        //"keyboard-name": "usb-usb-keyboard",
         "format-en": "EN",
         "format-": "RU",
     },
